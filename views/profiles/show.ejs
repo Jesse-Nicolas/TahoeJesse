@@ -1,0 +1,37 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
+  <% if (user?.profile.avatar) { %>
+    <div>
+      <img
+        src="<%= user.profile.avatar %>"
+        alt="<%= user.profile.name %> avatar"
+      />
+    </div>
+  <% } %>
+  <ul>
+    <% profile.tasks.forEach(task => { %>
+      <li>
+        <%= task.name %> ::: <%= task.details %> 
+      </li>
+    <% }) %>
+  </ul>
+  <div>
+    <h2>Add a request:</h2>
+    <form action="/profiles/<%= profile._id %>/tasks" method="POST">
+        <label>
+          Task:
+          <input type="text" name="name" autocomplete="off">
+        </label>
+        <label>
+          Details:
+          <input type="text" name="details" autocomplete="off">
+        </label>
+        <button type="submit">Add</button>
+    </form>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
