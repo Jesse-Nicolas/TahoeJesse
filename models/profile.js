@@ -22,6 +22,7 @@ const taskSchema = new Schema({
 const profileSchema = new Schema({
   name: String,
   avatar: String,
+  isAdmin: Boolean,
   tasks: [taskSchema],
 }, {
   timestamps: true
