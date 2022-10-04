@@ -27,8 +27,37 @@ function create(req, res)  {
   }) 
 }
 
+function show(req, res) {
+  Task.findById(req.params.id)
+  .then(task => {
+    res.render('tasks/show', {
+      task: task,
+      title: 'show task'
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/profiles')
+  })
+}
+
+function update(req, res) {
+  Task.findById(req.params.id)
+  .then(task => {
+    task.updateOne(req.body, {new: true})
+    .then(() => {
+      res.redirect(`/profiles/${task.client}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/profiles')
+  })
+}
+
 export{
   index,
   create,
-
+  show,
+  update,
 }

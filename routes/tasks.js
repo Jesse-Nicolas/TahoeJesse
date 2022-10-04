@@ -6,7 +6,13 @@ const router = Router()
 
 router.get('/', tasksCtrl.index)
 
+router.get('/:id', tasksCtrl.show)
+
 router.post('/', tasksCtrl.create)
+
+router.put('/:id', tasksCtrl.update)
+
+
 
 export {
   router

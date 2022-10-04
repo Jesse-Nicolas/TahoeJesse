@@ -10,7 +10,9 @@
   <ul>
     <% tasks.forEach(task => { %>
       <li>
-        <%= task.name %> ::: <%= task.details %> ::: <%= task.owner %> 
+        <a href='/tasks/<%= task._id %>'>
+        <%= task.name %> ::: <%= task.details %> ::: <%= task.client %> 
+      </a>
       </li>
     <% }) %>
   </ul>

@@ -14,7 +14,9 @@
   <ul>
     <% tasks.forEach(task => { %>
       <li>
-        <%= task %> 
+        <a href="/tasks/<%= task._id %>">
+        <%= task.name %> ::: <%= task.details %> 
+      </a>
       </li>
     <% }) %>
   </ul>

@@ -3,20 +3,18 @@
 
 <main>
   <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
-  <% if (user?.profile.avatar) { %>
-    <div>
-      <img
-        src="<%= user.profile.avatar %>"
-        alt="<%= user.profile.name %> avatar"
-      />
-    </div>
-  <% } %>
   <ul>
-    <% tasks.forEach(task => { %>
-      <li>
-        <%= task.name %> ::: <%= task.details %> ::: <%= task.client %> 
-      </li>
-    <% }) %>
+    <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
+      <label>
+        Task:
+        <input type="text" name="name" autocomplete="off" value="<%= task.name %>">
+      </label>
+      <label>
+        Details:
+        <input type="text" name="details" autocomplete="off" value="<%= task.details %>">
+      </label>
+      <button type="submit">Save changes</button>
+  </form>
   </ul>
 </main>
 
