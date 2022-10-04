@@ -2,20 +2,30 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <div>
-    <h2>this is where I (as admin) will be able to view all my requests</h2>
-  </div>
-
-  <h1>tasks:</h1>
-  <ul>
+  <h1>All tasks: (make visible only to admin)</h1>
+  <table>
+    <tr>
+      <th>Task:</th>
+      <th>Notes:</th>
+      <th>Details:</th>
+    </tr>
     <% tasks.forEach(task => { %>
-      <li>
-        <a href='/tasks/<%= task._id %>'>
-        <%= task.name %> ::: <%= task.details %> ::: <%= task.client %> 
-      </a>
-      </li>
+    <tr>
+      <td>
+        <%= task.name %>
+      </td>
+      <td>
+        <%= task.details %>
+      </td>
+      <td>
+        <%= task.client.name %>
+      </td>
+      <td>
+        <a href='/tasks/<%= task._id %>'>view</a>
+      </td>
+    </tr>
     <% }) %>
-  </ul>
+  </table>
 </main>
 
 <%- include('../partials/footer') %>

@@ -21,7 +21,9 @@
 <h2>Arrangements:</h2>
 <ul>
   <% task.arrangements.forEach(arrangement =>  { %>
-    <li><%= arrangement %></li>
+    <li>
+      <a href="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>">
+        <%= arrangement %></a></li>
   <% }) %>
 </ul>
 <h3>Add an Arrangement</h3>

@@ -8,6 +8,8 @@ router.get('/', tasksCtrl.index)
 
 router.get('/:id', tasksCtrl.show)
 
+router.get('/:id/arrangements/:id', tasksCtrl.showArrangement)
+
 router.post('/', tasksCtrl.create)
 
 router.post('/:id/arrangements', tasksCtrl.addArrangement)

@@ -81,6 +81,10 @@ function addArrangement(req, res) {
   })
 }
 
+function showArrangement(req, res)  {
+
+}
+
 export{
   index,
   create,
@@ -88,4 +92,6 @@ export{
   update,
   deleteTask as delete,
   addArrangement,
+  showArrangement,
+  
 }
