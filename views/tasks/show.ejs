@@ -3,6 +3,7 @@
 
 <main>
   <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
+  <h3>Edit task details:</h3>
   <ul>
     <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
       <label>
@@ -17,6 +18,28 @@
   </form>
   <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST"><button type="submit">Delete</button></form>
   </ul>
+<h2>Arrangements:</h2>
+<ul>
+  <% task.arrangements.forEach(arrangement =>  { %>
+    <li><%= arrangement %></li>
+  <% }) %>
+</ul>
+<h3>Add an Arrangement</h3>
+<form action="/tasks/<%= task.id %>/arrangements" method="POST">
+  <label>
+    Servicer:
+    <input type="text" name="name">
+  </label>
+  <label>
+    Description:
+    <input type="text" name="details">
+  </label>
+  <label>
+    Scheduled:
+    <input type="date" name="fulfillment">
+  </label>
+  <button type="submit">Add</button>
+</form>
 </main>
 
 <%- include('../partials/footer') %>

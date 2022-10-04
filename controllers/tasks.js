@@ -66,10 +66,26 @@ function deleteTask(req, res) {
   })
 }
 
+function addArrangement(req, res) {
+  Task.findById(req.params.id)
+  .then(task => {
+    task.arrangements.push(req.body)
+    task.save()
+    .then(() => {
+      res.redirect(`/tasks/${task.id}`)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/profiles')
+  })
+}
+
 export{
   index,
   create,
   show,
   update,
   deleteTask as delete,
+  addArrangement,
 }
