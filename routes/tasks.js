@@ -12,7 +12,7 @@ router.post('/', tasksCtrl.create)
 
 router.put('/:id', tasksCtrl.update)
 
-
+router.delete('/:id', tasksCtrl.delete)
 
 export {
   router

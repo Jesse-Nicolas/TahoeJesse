@@ -19,7 +19,7 @@ function create(req, res)  {
   Task.create(req.body)
   .then(task => {
     console.log(task)
-    res.redirect('/tasks')
+    res.redirect(`/profiles/${task.client}`)
   })
   .catch(err => {
     console.log(err)
@@ -55,9 +55,21 @@ function update(req, res) {
   })
 }
 
+function deleteTask(req, res) {
+  Task.findByIdAndDelete(req.params.id)
+  .then(task => {
+    res.redirect(`/profiles/${task.client}`)
+  })
+  .catch(err => {
+    console.log(err)
+    res.redirect('/profiles')
+  })
+}
+
 export{
   index,
   create,
   show,
   update,
+  deleteTask as delete,
 }
