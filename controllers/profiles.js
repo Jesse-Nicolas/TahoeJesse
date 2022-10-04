@@ -1,4 +1,5 @@
 import { Profile } from "../models/profile.js"
+import { Task } from "../models/task.js"
 
 function index(req, res)  {
   Profile.find({})
@@ -17,31 +18,21 @@ function index(req, res)  {
 function show(req, res) {
   Profile.findById(req.params.id)
   .then(profile =>  {
-    res.render('profiles/show', {
-      title: 'profile',
-      profile,
+    Task.find({client: req.params.id})
+    .then(tasks =>  {
+      res.render('profiles/show', {
+        title: 'profile',
+        profile,
+        tasks,
+      })
     })
   })
 }
 
-function createTask(req, res) {
-  Profile.findById(req.params.id)
-  .then(profile =>  {
-    profile.tasks.push(req.body)
-    profile.save()
-    .then(() => {
-      res.redirect(`/profiles/${req.params.id}`)
-    })
-  })
-  .catch(err => {
-    console.log(err)
-    res.redirect('/')
-  })
-}
+
 
 export{
   index,
   show,
-  createTask,
 
 }

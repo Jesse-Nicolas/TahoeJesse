@@ -14,24 +14,10 @@
   <ul>
     <% tasks.forEach(task => { %>
       <li>
-        <%= task %> 
+        <%= task.name %> ::: <%= task.details %> ::: <%= task.client %> 
       </li>
     <% }) %>
   </ul>
-  <div>
-    <h2>Add a request:</h2>
-    <form action="/tasks" method="POST">
-        <label>
-          Task:
-          <input type="text" name="name" autocomplete="off">
-        </label>
-        <label>
-          Details:
-          <input type="text" name="details" autocomplete="off">
-        </label>
-        <button type="submit">Add</button>
-    </form>
-  </div>
 </main>
 
 <%- include('../partials/footer') %>

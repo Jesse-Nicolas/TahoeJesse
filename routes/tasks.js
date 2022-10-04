@@ -1,14 +1,12 @@
 import { Router } from 'express'
-import * as profilesCtrl from '../controllers/profiles.js'
+import * as tasksCtrl from '../controllers/tasks.js'
 import { isLoggedIn } from '../middleware/middleware.js'
 
 const router = Router()
 
-router.get('/', profilesCtrl.index)
+router.get('/', tasksCtrl.index)
 
-router.get('/:id', profilesCtrl.show)
-
-
+router.post('/', tasksCtrl.create)
 
 export {
   router
