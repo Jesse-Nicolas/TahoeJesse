@@ -4,44 +4,51 @@
 <main>
   <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
   <h3>Edit task details:</h3>
-  <ul>
+  <table>
     <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
-      <label>
-        Task:
-        <input type="text" name="name" autocomplete="off" value="<%= task.name %>">
-      </label>
-      <label>
-        Details:
-        <input type="text" name="details" autocomplete="off" value="<%= task.details %>">
-      </label>
-      <button type="submit">Save changes</button>
+    <tr>
+      <th>Task:</th>
+      <th>Details:</th>
+    </tr>
+    <tr>
+      <td><input type="text" name="name" autocomplete="off" value="<%= task.name %>"></td>
+      <td><input type="text" name="details" autocomplete="off" value="<%= task.details %>"></td>
+      <td><button type="submit">Save changes</button></td>
+      <td><form action="/tasks/<%= task.id %>?_method=DELETE" method="POST"><button type="submit">Delete task</button></form></td>
+    </tr>
+    </form>
+  </table>
+  <h2>Arrangements made:</h2>
+  <table>
+    <tr>
+      <th>Name:</th>
+      <th>Details:</th>
+      <th>Date scheduled:</th>
+    </tr>
+    <% task.arrangements.forEach(arrangement =>  { %>
+      <tr>
+        <td><%= arrangement.name %></td>
+        <td><%= arrangement.details %></td>
+        <td><%= arrangement.fulfillment %></td>
+      </tr>
+      <% }) %>
+  </table>
+  <h3>Add an Arrangement</h3>
+  <form action="/tasks/<%= task.id %>/arrangements" method="POST">
+    <label>
+      Servicer:
+      <input type="text" name="name">
+    </label>
+    <label>
+      Description:
+      <input type="text" name="details">
+    </label>
+    <label>
+      Scheduled:
+      <input type="date" name="fulfillment">
+    </label>
+    <button type="submit">Add</button>
   </form>
-  <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST"><button type="submit">Delete</button></form>
-  </ul>
-<h2>Arrangements:</h2>
-<ul>
-  <% task.arrangements.forEach(arrangement =>  { %>
-    <li>
-      <a href="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>">
-        <%= arrangement %></a></li>
-  <% }) %>
-</ul>
-<h3>Add an Arrangement</h3>
-<form action="/tasks/<%= task.id %>/arrangements" method="POST">
-  <label>
-    Servicer:
-    <input type="text" name="name">
-  </label>
-  <label>
-    Description:
-    <input type="text" name="details">
-  </label>
-  <label>
-    Scheduled:
-    <input type="date" name="fulfillment">
-  </label>
-  <button type="submit">Add</button>
-</form>
 </main>
 
 <%- include('../partials/footer') %>
