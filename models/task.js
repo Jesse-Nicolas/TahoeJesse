@@ -7,6 +7,7 @@ const arrangementSchema = new Schema({
   name: String,
   details: String,
   fulfillment: Date,
+  task: String,
 }, {
   timestamps: true
 })

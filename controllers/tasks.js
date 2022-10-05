@@ -67,6 +67,8 @@ function deleteTask(req, res) {
 }
 
 function addArrangement(req, res) {
+  req.body.task = req.params.id
+  console.log(req.body)
   Task.findById(req.params.id)
   .then(task => {
     task.arrangements.push(req.body)
@@ -81,8 +83,27 @@ function addArrangement(req, res) {
   })
 }
 
-function showArrangement(req, res)  {
+function deleteArrangement(req, res)  {
+  Task.findById(req.path.slice(1,25))
+  .then(task => {
+    task.arrangements.remove({_id: req.params.id})
+    task.save()
+    .then(()=> {
+      res.redirect(`/tasks/${task.id}`)
+    })
+  })
+}
 
+function updateArrangement(req, res)  {
+  Task.findById(req.path.slice(1,25))
+  .then(task => {
+    task.arrangements.remove({_id: req.params.id})
+    task.arrangements.push(req.body)
+    task.save()
+    .then(()=> {
+      res.redirect(`/tasks/${task.id}`)
+    })
+  })
 }
 
 export{
@@ -92,6 +113,6 @@ export{
   update,
   deleteTask as delete,
   addArrangement,
-  showArrangement,
-  
+  deleteArrangement,
+  updateArrangement,
 }

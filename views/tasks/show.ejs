@@ -21,15 +21,23 @@
   <h2>Arrangements made:</h2>
   <table>
     <tr>
-      <th>Name:</th>
+      <th>Servicer:</th>
       <th>Details:</th>
       <th>Date scheduled:</th>
     </tr>
     <% task.arrangements.forEach(arrangement =>  { %>
       <tr>
-        <td><%= arrangement.name %></td>
-        <td><%= arrangement.details %></td>
-        <td><%= arrangement.fulfillment %></td>
+        <form action="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>/?_method=PUT" method="POST">
+        <td><input type="text" name="name" autocomplete="off" value="<%= arrangement.name %>"></td>
+        <td><input type="text" name="details" autocomplete="off" value="<%= arrangement.details %>"></td>
+        <td><input type="date" name="fulfillment" value="<%= arrangement.fulfillment.toISOString().slice(0, 10) %>"></td>
+        <td><button type="submit">Save changes</button></td>
+        </form>
+        <td><form 
+          action="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>?_method=DELETE" 
+          method="POST" rel="<%= task.id %>">
+          <button type="submit">Delete</button>
+        </form></td>
       </tr>
       <% }) %>
   </table>
