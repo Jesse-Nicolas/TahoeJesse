@@ -11,15 +11,31 @@
       />
     </div>
   <% } %>
-  <ul>
+  <h1>Your Requests</h1>
+  <table>
+    <tr>
+      <th>Task:</th>
+      <th>Notes:</th>
+      <th>Details:</th>
+    </tr>
     <% tasks.forEach(task => { %>
-      <li>
-        <a href="/tasks/<%= task._id %>">
-        <%= task.name %> ::: <%= task.details %> 
-      </a>
-      </li>
+    <tr>
+      <td>
+        <%= task.name %>
+      </td>
+      <td>
+        <%= task.details %>
+      </td>
+      <td>
+        <%= task.client.name %>
+      </td>
+      <td>
+        <a href='/tasks/<%= task._id %>'>view</a>
+      </td>
+    </tr>
     <% }) %>
-  </ul>
+  </table>
+
   <div>
     <h2>Add a request:</h2>
     <form action="/tasks" method="POST">
@@ -28,11 +44,17 @@
           <input type="text" name="name" autocomplete="off">
         </label>
         <label>
-          Details:
+          Notes:
           <input type="text" name="details" autocomplete="off">
         </label>
         <button type="submit">Add</button>
     </form>
+  </div>
+  <div>
+    <h1>FIND A WAY TO MESSAGE JESSE... REFERENCED RESOURCE?</h1>
+    <p>what if i had a message database that attached the clients profile id to each message</p>
+    <p>then i could render all messages between myself and that client onto their profile page?</p>
+    <p>the client profile id would have to be attached to messages that i post as well</p>
   </div>
 </main>
 

@@ -2,19 +2,11 @@
 <%- include('./partials/nav') %>
 
 <main>
-  <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
-  <% if (user?.profile.avatar) { %>
-    <div>
-      <img
-        src="<%= user.profile.avatar %>"
-        alt="<%= user.profile.name %> avatar"
-      />
-    </div>
-  <% } %>
   <div>
-    <h3>This should never be visible</h2>
-
+    <h3>This will be my landing page</h2>
   </div>
+  <p>tell users to log in</p>
+  <p>explain the business</p>
 </main>
 
 <%- include('./partials/footer') %>
