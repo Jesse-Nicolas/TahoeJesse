@@ -4,8 +4,10 @@
 </head>
 <body>
   <nav>
+    <% if (user?.isAdmin)  { %>
     <a href="/profiles">All Clients</a>
     <a href="/tasks">All Tasks</a>
+    <% } %>
     <% if (user) { %>
       <a href="/auth/logout" class="right">
         <button type="submit">Logout</button>

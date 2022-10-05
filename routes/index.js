@@ -6,7 +6,7 @@ const router = Router()
 
 router.get('/', function (req, res) {
   if (req.user) {
-    res.redirect(`/profiles/${req.user.profile._id}`)
+    res.redirect(`/profiles/${req.user.profile.id}`)
   }
   else {res.render('index', {
     title: 'landing'

@@ -41,22 +41,24 @@
       </tr>
       <% }) %>
   </table>
-  <h3>Add an Arrangement</h3>
-  <form action="/tasks/<%= task.id %>/arrangements" method="POST">
-    <label>
-      Servicer:
-      <input type="text" name="name">
-    </label>
-    <label>
-      Description:
-      <input type="text" name="details">
-    </label>
-    <label>
-      Scheduled:
-      <input type="date" name="fulfillment">
-    </label>
-    <button type="submit">Add</button>
-  </form>
+  <% if (user?.isAdmin)  { %>
+    <h3>Add an Arrangement</h3>
+    <form action="/tasks/<%= task.id %>/arrangements" method="POST">
+      <label>
+        Servicer:
+        <input type="text" name="name">
+      </label>
+      <label>
+        Description:
+        <input type="text" name="details">
+      </label>
+      <label>
+        Scheduled:
+        <input type="date" name="fulfillment">
+      </label>
+      <button type="submit">Add</button>
+    </form>
+  <% } %>
 </main>
 
 <%- include('../partials/footer') %>
