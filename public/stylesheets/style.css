@@ -39,3 +39,20 @@ main {
 .right {
   margin-left: auto;
 }
+
+.card-container {
+  display: grid;
+  grid-template-rows: max-content 200px 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  border: 2px solid white;
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.card {
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 3px;
+  color: #1a1a1a;
+  background-color: bisque;
+}

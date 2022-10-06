@@ -13,48 +13,46 @@
       <td><input type="text" name="name" autocomplete="off" value="<%= task.name %>"></td>
       <td><input type="text" name="details" autocomplete="off" value="<%= task.details %>"></td>
       <td><button type="submit">Save changes</button></td>
-      <td><form action="/tasks/<%= task.id %>?_method=DELETE" method="POST"><button type="submit">Delete task</button></form></td>
+      <% if (user?.isAdmin)  { %>
+        <td><form action="/tasks/<%= task.id %>?_method=DELETE" method="POST"><button type="submit">Delete task</button></form></td>
+      <% } %>
     </tr>
     </form>
   </table>
   <h2>Arrangements made:</h2>
 
   <% if (task.arrangements.length) {  %>
-    <table>
-      <tr>
-        <th>Servicer:</th>
-        <th>Details:</th>
-        <th>Date scheduled:</th>
-      </tr>
+    <div class="card-container">
 
       <% if (user?.isAdmin)  { %>
         <% task.arrangements.forEach(arrangement =>  { %>
-          <tr>
+          <div class="card">
             <form action="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>/?_method=PUT" method="POST">
-              <td><input type="text" name="name" autocomplete="off" value="<%= arrangement.name %>"></td>
-              <td><input type="text" name="details" autocomplete="off" value="<%= arrangement.details %>"></td>
-              <td><input type="date" name="fulfillment" value="<%= arrangement.fulfillment.toISOString().slice(0, 10) %>"></td>
-              <td><button type="submit">Save changes</button></td>
+              <div>Servicer:<input type="text" name="name" autocomplete="off" value="<%= arrangement.name %>"></div>
+              <div>Notes:<input type="text" name="details" autocomplete="off" value="<%= arrangement.details %>"></div>
+              <div>Date Scheduled:<input type="date" name="fulfillment" value="<%= arrangement.fulfillment.toISOString().slice(0, 10) %>"></div>
+              <div><button type="submit">Save changes</button></div>
             </form>
-            <td><form 
+            <div><form 
               action="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>?_method=DELETE" 
               method="POST" rel="<%= task.id %>">
               <button type="submit">Delete</button>
-            </form></td>
-          </tr>
+            </form></div>
+          </div>
         <% }) %>
 
       <% } else { %>
         <% task.arrangements.forEach(arrangement =>  { %>
-          <tr>
-            <td><%= arrangement.name %></td>
-            <td><%= arrangement.details %></td>
-            <td><%= arrangement.fulfillment.toISOString().slice(0, 10) %></td>
-          </tr>
+          <div class="card">
+            <div><%= arrangement.name %> will</div>
+            <div><%= arrangement.details %></div>
+            <div>on <%= arrangement.fulfillment.toISOString().slice(0, 10) %> at <%= arrangement.fulfillment.toISOString().slice(11, 16) %></div>
+          </div>
         <% }) %>
       <% } %>
 
-    </table>
+    </div>
+
   <% } else { %>
     <h3>will display here</h3>
   <% } %>
