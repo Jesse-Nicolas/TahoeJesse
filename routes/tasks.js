@@ -1,24 +1,25 @@
 import { Router } from 'express'
 import * as tasksCtrl from '../controllers/tasks.js'
 import { isLoggedIn } from '../middleware/middleware.js'
+import { isAdmin } from '../middleware/middleware.js' 
 
 const router = Router()
 
-router.get('/', tasksCtrl.index)
+router.get('/', isLoggedIn, isAdmin, tasksCtrl.index)
 
-router.get('/:id', tasksCtrl.show)
+router.get('/:id', isLoggedIn, tasksCtrl.show)
 
-router.post('/', tasksCtrl.create)
+router.post('/', isLoggedIn, tasksCtrl.create)
 
-router.post('/:id/arrangements', tasksCtrl.addArrangement)
+router.post('/:id/arrangements', isLoggedIn, isAdmin, tasksCtrl.addArrangement)
 
-router.put('/:id', tasksCtrl.update)
+router.put('/:id', isLoggedIn, tasksCtrl.update)
 
-router.put('/:id/arrangements/:id', tasksCtrl.updateArrangement)
+router.put('/:id/arrangements/:id', isLoggedIn, isAdmin, tasksCtrl.updateArrangement)
 
-router.delete('/:id', tasksCtrl.delete)
+router.delete('/:id', isLoggedIn, tasksCtrl.delete)
 
-router.delete('/:id/arrangements/:id', tasksCtrl.deleteArrangement)
+router.delete('/:id/arrangements/:id', isLoggedIn, isAdmin, tasksCtrl.deleteArrangement)
 
 
 export {
