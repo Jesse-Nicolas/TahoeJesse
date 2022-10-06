@@ -2,22 +2,12 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1>hello, <%= user.profile.name %></h1>
-  <% if (user?.profile.avatar) { %>
-    <div>
-      <img
-        src="<%= user.profile.avatar %>"
-        alt="<%= user.profile.name %> avatar"
-      />
-    </div>
-  <% } %>
   <h1>Your Requests</h1>
   <% if (tasks.length) { %>
     <table>
       <tr>
         <th>Task:</th>
         <th>Notes:</th>
-        <th>Details:</th>
       </tr>
       <% tasks.forEach(task => { %>
       <tr>
@@ -26,9 +16,6 @@
         </td>
         <td>
           <%= task.details %>
-        </td>
-        <td>
-          <%= task.client.name %>
         </td>
         <td>
           <a href='/tasks/<%= task._id %>'>view</a>
@@ -53,12 +40,6 @@
         </label>
         <button type="submit">Add</button>
     </form>
-  </div>
-  <div>
-    <h1>Message Jesse?</h1>
-    <p>what if i had a message database that attached the clients profile id to each message</p>
-    <p>then i could render all messages between myself and that client onto their profile page?</p>
-    <p>the client profile id would have to be attached to messages that i post as well</p>
   </div>
 </main>
 

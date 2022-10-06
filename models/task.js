@@ -16,7 +16,6 @@ const taskSchema = new Schema({
   name: String,
   details: String,
   fulfilled: Boolean,
-  taylor: Boolean,
   client: {type: Schema.Types.ObjectId, ref: "Profile"},
   arrangements: [arrangementSchema]
 }, {

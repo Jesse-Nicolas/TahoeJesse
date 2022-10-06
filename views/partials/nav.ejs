@@ -12,6 +12,7 @@
     <% } %>
 
     <% if (user) { %>
+      <p class="right">hello, <%= user.profile.name %></p>
       <a href="/auth/logout" class="right">
         <button type="submit">Logout</button>
       </a>

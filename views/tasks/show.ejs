@@ -56,11 +56,10 @@
 
     </table>
   <% } else { %>
-    <h3>will display here</h3><% } %>
-  
+    <h3>will display here</h3>
+  <% } %>
 
-
-
+  <% if (user?.isAdmin)  { %>
     <h3>Add an Arrangement</h3>
     <form action="/tasks/<%= task.id %>/arrangements" method="POST">
       <label>
@@ -77,7 +76,6 @@
       </label>
       <button type="submit">Add</button>
     </form>
-  <% if (user?.isAdmin)  { %>
   <% } %>
 </main>
 
