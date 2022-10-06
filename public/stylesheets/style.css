@@ -12,8 +12,9 @@ html {
 }
 
 body {
-  background-color: #1a1a1a;
-  color: #f6f6f6;
+  background: linear-gradient(135deg, #606C38,  #283618);
+  /* background: linear-gradient(136deg, #333D29, #A4AC86); */
+  color: #FEFAE0;
   /* Use a system font, if none are available use any found sans-sarif font */
   font-family: system-ui, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 
     'Helvetica Neue', sans-serif;
@@ -31,8 +32,24 @@ nav {
 
 main {
   display: flex;
-  align-items: center;
+  height: 100vh;
   justify-content: center;
+  flex-direction: row;
+}
+
+.screen-left  {
+  max-width: 50vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.screen-right {
+  max-width: 50vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   flex-direction: column;
 }
 
@@ -43,17 +60,38 @@ main {
 .card-container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   flex-wrap: wrap;
-  max-width: 50vw;
+}
+
+.user-homepage {
+  flex-direction: column;
+  width: 50%;
+  height: 100vh;
 }
 
 .card {
-  display: grid;
+  width: 500px;
+  height: auto;
   grid-template-rows: max-content 200px 1fr;
-  border: 1px solid gray;
   border-radius: 10px;
   padding: 3px;
-  color: #1a1a1a;
-  background-color: bisque;
+  color: black;
+  background-color: #C5C9A4;
+  box-shadow: 0 30px 40px -14px #606F49;
+  margin: 7px;
+}
+
+.view-eye {
+  text-decoration: none;
+}
+
+.Eye::before {
+  content: ' \f06e';
+  position: relative;
+  float: right;
+  font: var(--fa-font-solid);
+  size: 50px;
+  color: #160C28;
 }

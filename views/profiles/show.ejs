@@ -2,19 +2,23 @@
 <%- include('../partials/nav') %>
 
 <main>
+  <div class="user-homepage">
   <h1>Your Requests</h1>
   <% if (tasks.length) { %>
     <div class="card-container">
       <% tasks.forEach(task => { %>
         <div class="card">
             <h4>
+              <% if (task?.fulfilled === false) { %><i style="color:#C44900" class="fa-solid fa-clock"></i><% } %>
+              <% if (task?.fulfilled === true) { %><i style="color:#7cc400" class="fa-solid fa-list-check"></i><% } %>
               <%= task.name %>
             </h4>
             <div>Notes:
               <%= task.details %>
             </div>
+            <span><i style="display: inline; float: left; margin-right: 5px" class="fa-regular fa-calendar-days"></i><p>3/22/2023</p></span>
             <div>
-              <a href='/tasks/<%= task._id %>'><i class="fa-solid fa-eyes"></i>view</a>
+              <a class="view-eye" href='/tasks/<%= task._id %>'><i class="Eye"></i></a>
             </div>
         </div>
       <% }) %>
@@ -22,8 +26,9 @@
   <% } else { %>
     <p>will appear here.</p>
   <% } %>  
+</div>
 
-  <div>
+  <div class="task-form">
     <h2>Add a request:</h2>
     <form action="/tasks" method="POST">
         <label>
