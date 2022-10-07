@@ -3,7 +3,7 @@
 
 <main>
   <div class="screen-left">
-    <h1>Task details:</h1>
+    <h1>Request details</h1>
     <table>
       <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
       <tr>
@@ -23,7 +23,7 @@
   </div>
 
   <div  class="screen-right">
-  <h2>Arrangements made:</h2>
+  <h2>Arrangements made</h2>
   <% if (task.arrangements.length) {  %>
     <div class="card-container">
       <% if (user?.isAdmin)  { %>

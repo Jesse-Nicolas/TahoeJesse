@@ -2,8 +2,8 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <div class="user-homepage">
-  <h1>Your Requests</h1>
+  <div class="screen-left">
+  <h1> Requests</h1>
   <% if (tasks.length) { %>
     <div class="card-container">
       <% tasks.forEach(task => { %>
@@ -27,21 +27,19 @@
     <p>will appear here.</p>
   <% } %>  
 </div>
-
   <div class="task-form">
-    <h2>Add a request:</h2>
+    <h2>Add Request</h2>
     <form action="/tasks" method="POST">
         <label>
-          Task:
-          <input type="text" name="name" autocomplete="off">
+          <input type="text" name="name" autocomplete="off" placeholder="Task">
         </label>
         <label>
-          Notes:
-          <input type="text" name="details" autocomplete="off">
+          <textarea name="details" autocomplete="off" placeholder="Notes"></textarea>
         </label>
         <button type="submit">Add</button>
     </form>
   </div>
 </main>
+
 
 <%- include('../partials/footer') %>
