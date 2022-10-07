@@ -2,6 +2,7 @@
 <%- include('../partials/nav') %>
 
 <main>
+  <% if (isSelf || user?.isAdmin)  { %>
   <div class="screen-left">
   <h1> Requests</h1>
   <% if (tasks.length) { %>
@@ -26,7 +27,7 @@
   <% } else { %>
     <p>will appear here.</p>
   <% } %>  
-</div>
+  </div>
   <div class="task-form">
     <h2>Add Request</h2>
     <form action="/tasks" method="POST">
@@ -36,9 +37,11 @@
         <label>
           <textarea name="details" autocomplete="off" placeholder="Notes"></textarea>
         </label>
-        <button type="submit">Add</button>
+          <button type="submit">Add</button>
     </form>
   </div>
+<% } %>
+
 </main>
 
 

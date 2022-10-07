@@ -2,80 +2,79 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <div class="screen-left">
-    <h1>Request details</h1>
-    <table>
-      <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
-      <tr>
-        <th>Task:</th>
-        <th>Details:</th>
-      </tr>
-      <tr>
-        <td><input type="text" name="name" autocomplete="off" value="<%= task.name %>"></td>
-        <td><input type="text" name="details" autocomplete="off" value="<%= task.details %>"></td>
-        <td><button type="submit">Save changes</button></td>
-        <% if (user?.isAdmin)  { %>
-          <td><form action="/tasks/<%= task.id %>?_method=DELETE" method="POST"><button type="submit">Delete task</button></form></td>
-        <% } %>
-      </tr>
-      </form>
-    </table>
-  </div>
-
-  <div  class="screen-right">
-  <h2>Arrangements made</h2>
-  <% if (task.arrangements.length) {  %>
-    <div class="card-container">
-      <% if (user?.isAdmin)  { %>
-        <% task.arrangements.forEach(arrangement =>  { %>
-          <div class="card">
-            <form action="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>/?_method=PUT" method="POST">
-              <div>Servicer:<input type="text" name="name" autocomplete="off" value="<%= arrangement.name %>"></div>
-              <div>Notes:<input type="text" name="details" autocomplete="off" value="<%= arrangement.details %>"></div>
-              <div>Date Scheduled:<input type="date" name="fulfillment" value="<%= arrangement.fulfillment.toISOString().slice(0, 10) %>"></div>
-              <div><button type="submit">Save changes</button></div>
-            </form>
-            <div><form 
-              action="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>?_method=DELETE" 
-              method="POST" rel="<%= task.id %>">
-              <button type="submit">Delete</button>
-            </form></div>
-          </div>
-        <% }) %>
-      <% } else { %>
-        <% task.arrangements.forEach(arrangement =>  { %>
-          <div class="card">
-            <div><%= arrangement.name %> will</div>
-            <div><%= arrangement.details %></div>
-            <div>on <%= arrangement.fulfillment.toISOString().slice(0, 10) %> at <%= arrangement.fulfillment.toISOString().slice(11, 16) %></div>
-          </div>
-        <% }) %>
-      <% } %>
+  <% if (isSelf || user?.isAdmin)  { %>
+    <div class="screen-left">
+      <h1>Request details</h1>
+      <table>
+        <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
+        <tr>
+          <th>Task:</th>
+          <th>Details:</th>
+        </tr>
+        <tr>
+          <td><input type="text" name="name" autocomplete="off" value="<%= task.name %>"></td>
+          <td><input type="text" name="details" autocomplete="off" value="<%= task.details %>"></td>
+          <td><button type="submit">Save changes</button></td>
+          <% if (user?.isAdmin)  { %>
+            <td><form action="/tasks/<%= task.id %>?_method=DELETE" method="POST"><button type="submit">Delete task</button></form></td>
+          <% } %>
+        </tr>
+        </form>
+      </table>
     </div>
-
-  <% } else { %>
-    <h3>will display here</h3>
+    <div  class="screen-right">
+    <h2>Arrangements made</h2>
+    <% if (task.arrangements.length) {  %>
+      <div class="card-container">
+        <% if (user?.isAdmin)  { %>
+          <% task.arrangements.forEach(arrangement =>  { %>
+            <div class="card">
+              <form action="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>/?_method=PUT" method="POST">
+                <div>Servicer:<input type="text" name="name" autocomplete="off" value="<%= arrangement.name %>"></div>
+                <div>Notes:<input type="text" name="details" autocomplete="off" value="<%= arrangement.details %>"></div>
+                <div>Date Scheduled:<input type="date" name="fulfillment" value="<%= arrangement.fulfillment.toISOString().slice(0, 10) %>"></div>
+                <div><button type="submit">Save changes</button></div>
+              </form>
+              <div><form 
+                action="/tasks/<%= task.id %>/arrangements/<%= arrangement.id %>?_method=DELETE" 
+                method="POST" rel="<%= task.id %>">
+                <button type="submit">Delete</button>
+              </form></div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <% task.arrangements.forEach(arrangement =>  { %>
+            <div class="card">
+              <div><%= arrangement.name %> will</div>
+              <div><%= arrangement.details %></div>
+              <div>on <%= arrangement.fulfillment.toISOString().slice(0, 10) %> at <%= arrangement.fulfillment.toISOString().slice(11, 16) %></div>
+            </div>
+          <% }) %>
+        <% } %>
+      </div>
+    <% } else { %>
+      <h3>will display here</h3>
+    <% } %>
+    <% if (user?.isAdmin)  { %>
+      <h3>Add an Arrangement</h3>
+      <form action="/tasks/<%= task.id %>/arrangements" method="POST">
+        <label>
+          Servicer:
+          <input type="text" name="name">
+        </label>
+        <label>
+          Description:
+          <input type="text" name="details">
+        </label>
+        <label>
+          Scheduled:
+          <input type="date" name="fulfillment">
+        </label>
+        <button type="submit">Add</button>
+      </form>
+    <% } %>
+    </div>
   <% } %>
-  <% if (user?.isAdmin)  { %>
-    <h3>Add an Arrangement</h3>
-    <form action="/tasks/<%= task.id %>/arrangements" method="POST">
-      <label>
-        Servicer:
-        <input type="text" name="name">
-      </label>
-      <label>
-        Description:
-        <input type="text" name="details">
-      </label>
-      <label>
-        Scheduled:
-        <input type="date" name="fulfillment">
-      </label>
-      <button type="submit">Add</button>
-    </form>
-  <% } %>
-  </div>
-
 </main>
 
 <%- include('../partials/footer') %>

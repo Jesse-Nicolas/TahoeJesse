@@ -30,9 +30,11 @@ function create(req, res)  {
 function show(req, res) {
   Task.findById(req.params.id)
   .then(task => {
+    const isSelf = task.client.equals(req.user.profile._id)
     res.render('tasks/show', {
       task: task,
-      title: 'show task'
+      title: 'show task',
+      isSelf,
     })
   })
   .catch(err => {

@@ -5,7 +5,7 @@ function index(req, res)  {
   Profile.find({})
   .then(profiles => {
     res.render('profiles/index',  {
-      title: 'all profiles',
+      title: 'All Profiles',
       profiles: profiles,
     })
   })
@@ -18,12 +18,14 @@ function index(req, res)  {
 function show(req, res) {
   Profile.findById(req.params.id)
   .then(profile =>  {
+    const isSelf = profile._id.equals(req.user.profile._id)
     Task.find({client: req.params.id})
     .then(tasks =>  {
       res.render('profiles/show', {
-        title: 'profile',
+        title: 'My Profile',
         profile,
         tasks,
+        isSelf,
       })
     })
   })
