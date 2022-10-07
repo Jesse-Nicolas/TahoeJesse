@@ -4,10 +4,10 @@ Clients can log in with google Oauth and will be redirected to their profile pag
 
 ### [Deployed Site](https://tahoe-jesse.fly.dev)
 ### [Trello Board (project planning)](https://trello.com/b/dT0TrY4S/tahoejesse)
-![user-side task show](https://imgur.com/a/1I4yHNx)
-![user-side profile show](https://imgur.com/a/acmYilY)
-![admin-side profiles index](https://imgur.com/a/l6lJmqL)
-![admin-side task show](https://imgur.com/a/XiDRHhy)
+![user-side task show](./public/assets/user-side-task-show.png)
+![user-side profile show](./public/assets/user-side-profile-show.png)
+![admin-side profiles index](./public/assets/admin-side-profiles-index.png)
+![admin-side task show](./public/assets/admin-side-task-show.png)
 
 ## Technologies Used
 - HTML
