@@ -22,9 +22,9 @@ Clients can log in with google Oauth
 - [Icons8](https://icons8.com/)
 
 ### IceBox
-() "clock in/clock out" time tracker on assignments. log/total on task and profile views
-() twilio web api for text alerts
-() google calendar support for syncing arrangements to clients' google calendars
-() photo support for documenting recipts
-() show client names in task view. link client profiles on task show (for admins)
-() create messages resource. clients' proile.id is attached to each so the correct message history can be rendered 
+- "clock in/clock out" time tracker on assignments. log/total on task and profile views
+- twilio web api for text alerts
+- google calendar support for syncing arrangements to clients' google calendars
+- photo support for documenting recipts
+- show client names in task view. link client profiles on task show (for admins)
+- create messages resource. clients' proile.id is attached to each so the correct message history can be rendered 
