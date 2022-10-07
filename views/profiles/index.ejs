@@ -2,22 +2,18 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <div>
-    <h2>this is where I (as admin) will be able to view all my clients</h2>
-    <h3>if your not me, ive fucked up my authorization stuff. anyone else should be redirected to their own profile.
-    </h3>
+  <div class="card-container">
+    <h2>this is where admins will be able to view all clients</h2>
+    <h1>Clients:</h1>
+    <% profiles.forEach(profile =>  { %>
+      <div class="card">
+        <h1><a href="/profiles/<%= profile._id %>"><%= profile.name %></a></h1>
+        <img
+          src="<%= profile.avatar %>"
+          alt="<%= profile.name %> avatar"/>
+      </div>
+    <% }) %>
   </div>
-
-  <h1>Clients:</h1>
-  <% profiles.forEach(profile =>  { %>
-    <div>
-      <a href="/profiles/<%= profile._id %>"><%= profile.name %></a>
-      <img
-        src="<%= profile.avatar %>"
-        alt="<%= profile.name %> avatar"
-      />
-    </div>
-  <% }) %>
 </main>
 
 <%- include('../partials/footer') %>

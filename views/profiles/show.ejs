@@ -4,28 +4,25 @@
 <main>
   <% if (isSelf || user?.isAdmin)  { %>
   <div class="screen-left">
-  <h1> Requests</h1>
+  <h1 class="req-title">Requests</h1>
   <% if (tasks.length) { %>
     <div class="card-container">
       <% tasks.forEach(task => { %>
         <div class="card">
-            <h4>
-              <% if (task?.fulfilled === false) { %><i style="color:#C44900" class="fa-solid fa-clock"></i><% } %>
-              <% if (task?.fulfilled === true) { %><i style="color:#7cc400" class="fa-solid fa-list-check"></i><% } %>
-              <%= task.name %>
-            </h4>
-            <div>Notes:
-              <%= task.details %>
-            </div>
-            <span><i style="display: inline; float: left; margin-right: 5px" class="fa-regular fa-calendar-days"></i><p>3/22/2023</p></span>
-            <div>
-              <a class="view-eye" href='/tasks/<%= task._id %>'><i class="Eye"></i></a>
-            </div>
+          <h4>
+            <% if (task?.fulfilled === false) { %><i style="color:#C44900" class="fa-solid fa-clock"></i><% } %>
+            <% if (task?.fulfilled === true) { %><i style="color:#7cc400" class="fa-solid fa-list-check"></i><% } %>
+            <%= task.name %>
+          </h4>
+          <h6><%= task.details %></h6>
+          <div>
+            <a class="view-eye" href='/tasks/<%= task._id %>'><i class="Eye"></i></a>
+          </div>
         </div>
       <% }) %>
     </div>
   <% } else { %>
-    <p>will appear here.</p>
+    <h4 class="req-title">will appear here.</h4>
   <% } %>  
   </div>
   <div class="task-form">

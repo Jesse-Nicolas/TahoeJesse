@@ -135,3 +135,7 @@ textarea {
   display: flex;
   justify-content: center;
 }
+
+.req-title  {
+  color: white;
+}

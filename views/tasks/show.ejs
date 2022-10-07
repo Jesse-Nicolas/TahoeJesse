@@ -46,8 +46,8 @@
           <% task.arrangements.forEach(arrangement =>  { %>
             <div class="card">
               <h4><%= arrangement.name %></h4>
-              <div><%= arrangement.details %></div>
-              <div>on <%= arrangement.fulfillment.toISOString().slice(0, 10) %> at <%= arrangement.fulfillment.toISOString().slice(11, 16) %></div>
+              <h6><%= arrangement.details %></h6>
+              <div><p><i style="display: inline; float: left; margin-right: 5px" class="fa-regular fa-calendar-days"></i><%= arrangement.fulfillment.toISOString().slice(0, 10) %> at <%= arrangement.fulfillment.toISOString().slice(11, 16) %></p></div>
             </div>
           <% }) %>
         <% } %>
