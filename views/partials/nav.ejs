@@ -13,14 +13,14 @@
       </a>
     <% } else if (user) { %>
       <a href="/profiles/<%= user.profile._id %>">        
-        <button type="submit">My Profile</button>
+        <button type="submit" class="btn btn-info">My Profile</button>
       </a>
     <% } %>
 
     <% if (user) { %>
       <p class="right">hello, <%= user.profile.name %></p>
       <a href="/auth/logout" class="right">
-        <button type="submit">Logout</button>
+        <button type="submit" class="btn btn-danger">Logout</button>
       </a>
     <% } else { %>
       <div 
