@@ -1,11 +1,13 @@
 # TahoeJesse
 TahoeJesse is a client portal and task management app for a property management service in the greater Lake Tahoe area.
 Clients can log in with google Oauth
+### [Deployed Site](https://tahoe-jesse.fly.dev)
 
 ## Technologies Used
 - HTML
 - CSS
 - JavaScript
+- EJS
 - Express
 - Node
 - MongoDB
@@ -20,7 +22,7 @@ Clients can log in with google Oauth
 - [Icons8](https://icons8.com/)
 
 ### IceBox
-() clock in/clock out time tracker on assignments. log/total on task and profile views
+() "clock in/clock out" time tracker on assignments. log/total on task and profile views
 () twilio web api for text alerts
 () google calendar support for syncing arrangements to clients' google calendars
 () photo support for documenting recipts
