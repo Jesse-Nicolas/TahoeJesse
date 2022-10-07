@@ -3,8 +3,8 @@
 
 <main>
   <div class="card-container">
-    <h2>this is where admins will be able to view all clients</h2>
-    <h1>Clients:</h1>
+    <h2 class="req-title">this is where admins will be able to view all clients</h2>
+    <h1 class="req-title">Clients:</h1>
     <% profiles.forEach(profile =>  { %>
       <div class="card">
         <h4><a href="/profiles/<%= profile._id %>"><%= profile.name %></a></h4>

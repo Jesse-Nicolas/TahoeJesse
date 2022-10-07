@@ -5,10 +5,16 @@
 <body>
   <nav>
     <% if (user?.isAdmin)  { %>
-      <a href="/profiles">All Clients</a>
-      <a href="/tasks">All Tasks</a>
+      <a href="/profiles">        
+        <button type="submit">All Profiles</button>
+      </a>
+      <a href="/tasks">
+        <button type="submit">All Tasks</button>
+      </a>
     <% } else if (user) { %>
-      <a href="/profiles/<%= user.profile._id %>">My Profile</a>
+      <a href="/profiles/<%= user.profile._id %>">        
+        <button type="submit">My Profile</button>
+      </a>
     <% } %>
 
     <% if (user) { %>
