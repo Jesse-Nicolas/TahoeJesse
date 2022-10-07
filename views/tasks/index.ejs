@@ -2,30 +2,26 @@
 <%- include('../partials/nav') %>
 
 <main>
-  <h1>All tasks: (make visible only to admin)</h1>
-  <table>
-    <tr>
-      <th>Task:</th>
-      <th>Notes:</th>
-      <th>Details:</th>
-    </tr>
+  <div class="card-container" class="screen-left">
+    <h1>All tasks:</h1>
     <% tasks.forEach(task => { %>
-    <tr>
-      <td>
-        <%= task.name %>
-      </td>
-      <td>
-        <%= task.details %>
-      </td>
-      <td>
-        <%= task.client.name %>
-      </td>
-      <td>
-        <a href='/tasks/<%= task._id %>'>view</a>
-      </td>
-    </tr>
+      <% task.client %>
+      <div class="card">
+          <h4>
+            <% if (task?.fulfilled === false) { %><i style="color:#C44900" class="fa-solid fa-clock"></i><% } %>
+            <% if (task?.fulfilled === true) { %><i style="color:#7cc400" class="fa-solid fa-list-check"></i><% } %>
+            <%= task.name %>
+          </h4>
+          <div>
+            <%= task.details %>
+          </div>
+          <span><i style="display: inline; float: left; margin-right: 5px" class="fa-regular fa-calendar-days"></i></span>
+          <div>
+            <a class="view-eye" href='/tasks/<%= task._id %>'><i class="Eye"></i></a>
+          </div>
+      </div>
     <% }) %>
-  </table>
+  </div>
 </main>
 
 <%- include('../partials/footer') %>

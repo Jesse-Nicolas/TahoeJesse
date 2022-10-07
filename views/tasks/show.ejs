@@ -3,25 +3,24 @@
 
 <main>
   <% if (isSelf || user?.isAdmin)  { %>
-    <div class="screen-left">
+    <div class="task-form">
       <h1>Request details</h1>
-      <table>
-        <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
-        <tr>
-          <th>Task:</th>
-          <th>Details:</th>
-        </tr>
-        <tr>
-          <td><input type="text" name="name" autocomplete="off" value="<%= task.name %>"></td>
-          <td><input type="text" name="details" autocomplete="off" value="<%= task.details %>"></td>
-          <td><button type="submit">Save changes</button></td>
-          <% if (user?.isAdmin)  { %>
-            <td><form action="/tasks/<%= task.id %>?_method=DELETE" method="POST"><button type="submit">Delete task</button></form></td>
-          <% } %>
-        </tr>
+      <form action="/tasks/<%= task.id %>?_method=PUT" method="POST">
+        <label>
+          <input type="text" name="name" autocomplete="off" value="<%= task.name %>">
+        </label>
+        <label>
+          <textarea name="details" autocomplete="off"><%= task.details %></textarea>
+        </label>
+        <button type="submit" class="btn btn-info">Save changes</button>
+      </form>
+      <% if (user?.isAdmin)  { %>
+        <form action="/tasks/<%= task.id %>?_method=DELETE" method="POST">
+          <button type="submit" class="btn btn-dark">Delete task</button>
         </form>
-      </table>
+      <% } %>
     </div>
+
     <div  class="screen-right">
     <h2>Arrangements made</h2>
     <% if (task.arrangements.length) {  %>
@@ -43,9 +42,10 @@
             </div>
           <% }) %>
         <% } else { %>
+
           <% task.arrangements.forEach(arrangement =>  { %>
             <div class="card">
-              <div><%= arrangement.name %> will</div>
+              <h4><%= arrangement.name %></h4>
               <div><%= arrangement.details %></div>
               <div>on <%= arrangement.fulfillment.toISOString().slice(0, 10) %> at <%= arrangement.fulfillment.toISOString().slice(11, 16) %></div>
             </div>
@@ -70,7 +70,7 @@
           Scheduled:
           <input type="date" name="fulfillment">
         </label>
-        <button type="submit">Add</button>
+        <button type="submit" class="btn btn-info">Add</button>
       </form>
     <% } %>
     </div>
